@@ -1,0 +1,173 @@
+{% macro show_item() %}
+{# 首页使用的商品分类信息，这个信息使用的是Card样式结构，但是没有设计二级 #}
+<div class="accordion" id="accordionExample">
+    <div class="card text-white">
+        <div class="card-header" id="headingItem">
+            <span class="mb-0">
+                <a class="btn-link" aria-expanded="true" aria-controls="item-1" href="/item.index/1">
+                    图书音响
+                </a>
+            </span>
+        </div>
+        <!--
+        <div id="item-1" class="collapse" aria-labelledby="headingItem" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+				</div>
+            </div>
+        </div>
+        -->
+    </div>
+    <div class="card text-white">
+        <div class="card-header" id="headingItem">
+            <span class="mb-0">
+                <a class="btn-link" href="/item.index/2" aria-expanded="true" aria-controls="item-2">
+                    电脑办公
+                </a>
+            </span>
+        </div>
+        <!--
+        <div id="item-2" class="collapse" aria-labelledby="headingItem" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+				</div>
+            </div>
+        </div>
+        -->
+    </div>
+    <div class="card text-white">
+        <div class="card-header" id="headingItem">
+            <span class="mb-0">
+                <a class="btn-link" href="/item.index/3" aria-expanded="true" aria-controls="item-3">
+                    手机数码
+                </a>
+            </span>
+        </div>
+        <!--
+        <div id="item-3" class="collapse" aria-labelledby="headingItem" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+				</div>
+            </div>
+        </div>
+        -->
+    </div>
+    <div class="card text-white">
+        <div class="card-header" id="headingItem">
+            <span class="mb-0">
+                <a class="btn-link" href="/item.index/4" aria-expanded="true" aria-controls="item-4">
+                    家居生活
+                </a>
+            </span>
+        </div>
+        <!--
+        <div id="item-4" class="collapse" aria-labelledby="headingItem" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+				</div>
+            </div>
+        </div>
+        -->
+    </div>
+    <div class="card text-white">
+        <div class="card-header" id="headingItem">
+            <span class="mb-0">
+                <a class="btn-link" href="/item.index/5" aria-expanded="true" aria-controls="item-5">
+                    汽车用品
+                </a>
+            </span>
+        </div>
+        <!--
+        <div id="item-5" class="collapse" aria-labelledby="headingItem" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+				</div>
+            </div>
+        </div>
+        -->
+    </div>
+    <div class="card text-white">
+        <div class="card-header" id="headingItem">
+            <span class="mb-0">
+                <a class="btn-link" href="/item.index/6" aria-expanded="true" aria-controls="item-5">
+                    家用电器
+                </a>
+            </span>
+        </div>
+        <!--
+        <div id="item-5" class="collapse" aria-labelledby="headingItem" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="row">
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+					<div class="col-md-4"><a class="text-white" href="#">菜单</a></div>
+				</div>
+            </div>
+        </div>
+        -->
+    </div>
+</div>
+{% endmacro %}

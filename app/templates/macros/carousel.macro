@@ -1,0 +1,62 @@
+{% macro show_carousel() %}
+{# 定义的是整个项目之中的轮播的页面代码，包括轮播的图片都保存在了images目录下 #}
+<div id="yootk_carousel" class="carousel slide center-block" data-ride="carousel">
+    <!-- 指示符 -->
+    <ul class="carousel-indicators">
+        <li data-target="#yootk_carousel" data-slide-to="0"></li>
+        <li data-target="#yootk_carousel" data-slide-to="1"></li>
+        <li data-target="#yootk_carousel" data-slide-to="2"></li>
+        <li data-target="#yootk_carousel" data-slide-to="3"></li>
+        <li data-target="#yootk_carousel" data-slide-to="4"></li>
+        <li data-target="#yootk_carousel" data-slide-to="5"></li>
+        <li data-target="#yootk_carousel" data-slide-to="6" class="active"></li>
+    </ul>
+
+    <!-- 轮播图片 -->
+    <div class="carousel-inner">
+        <div class="carousel-item">
+            <a href="" target="_blank">
+                <img class="d-block w-100" src="{{ url_for('static', filename='images/carousel_ad/item_a.png') }}">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="" target="_blank">
+                <img class="d-block w-100" src="{{ url_for('static', filename='images/carousel_ad/item_b.png') }}">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="" target="_blank">
+                <img class="d-block w-100" src="{{ url_for('static', filename='images/carousel_ad/item_c.png') }}">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="" target="_blank">
+                <img class="d-block w-100" src="{{ url_for('static', filename='images/carousel_ad/item_d.png') }}">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="" target="_blank">
+                <img class="d-block w-100" src="{{ url_for('static', filename='images/carousel_ad/item_e.png') }}">
+            </a>
+        </div>
+        <div class="carousel-item">
+            <a href="" target="_blank">
+                <img class="d-block w-100" src="{{ url_for('static', filename='images/carousel_ad/item_f.png') }}">
+            </a>
+        </div>
+        <div class="carousel-item active">
+            <a href="" target="_blank">
+                <img class="d-block w-100" src="{{ url_for('static', filename='images/carousel_ad/item_g.png') }}">
+            </a>
+        </div>
+    </div>
+
+    <!-- 左右切换按钮 -->
+    <a class="carousel-control-prev" href="#yootk_carousel" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#yootk_carousel" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+</div>
+{% endmacro %}

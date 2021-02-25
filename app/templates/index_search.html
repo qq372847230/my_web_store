@@ -1,0 +1,39 @@
+{% import "macros/carousel.macro" as carousel %}
+{% import "macros/menu_item.macro" as item %}
+{% import "macros/split_page_bar.macro" as pagebar %}
+{% extends "yootk.parent.html" %}
+{% block head %}
+    {{super()}}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
+{% block body %}
+<div class="row">&nbsp;</div>
+<div class="row">
+    <div class="col-md-3">
+        {{item.show_item()}}
+    </div>
+    <div class="col-md-9" style="height: 100%;">
+        {{carousel.show_carousel()}}
+    </div>
+</div>
+<div style="height: 1px;">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            {% for goods in goodses %}
+            <div class="col-md-2">
+                <p class="text-center"><a href="#"><img src="{{url_for('static',filename='upload/' + goods.photo)}}" style="width:150px;"></a></p>
+                <p><a href="#">{{goods.name}}</a></p>
+                <p class="text-danger text-left"><strong>￥ {{goods.price}}</strong></p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        {{pagebar.show_pagebar(current_page, all_recorders, url, keyword, 20)}}
+    </div>
+</div>
+<div class="row">&nbsp;</div>
+{% endblock %}

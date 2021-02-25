@@ -1,0 +1,68 @@
+{% import "macros/carousel.macro" as carousel %}
+{% import "macros/menu_item.macro" as item %}
+{% import "macros/split_page_bar.macro" as pagebar %}
+{% import "macros/split_page_search.macro" as searchbar %}
+{% extends "yootk.parent.html" %}
+{% block head %}
+    {{super()}}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/util/yootk.util.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/common/forward.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/back/admin/goods/goods_list.js') }}"></script>
+{% endblock %}
+{% block body %}
+<div class="row">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12" style="height: 100%;">
+        {{carousel.show_carousel()}}
+    </div>
+</div>
+<div style="height: 1px;">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body text-left">
+                <h5 class="card-title">
+                    <strong><span class="fa fa-list"></span>&nbsp;商品信息列表</strong>
+                </h5>
+                <div>
+                    {{ searchbar.show_searchbar("goods_back.list_handle", keyword) }}
+                    <table class="table table-condensed" width="100%">
+                        <thead>
+                        <tr>
+                            <td class="text-center" style="width: 10%"><strong>商品图片</strong></td>
+                            <td class="text-center" style="width: 20%"><strong>商品名称</strong></td>
+                            <td class="text-center" style="width: 10%"><strong>商品单价</strong></td>
+                            <td class="text-center" style="width: 10%"><strong>商品分类</strong></td>
+                            <td class="text-center" style="width: 35%"><strong>商品描述</strong></td>
+                            <td class="text-left" style="width: 15%"><strong>操作</strong></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%  for goods in goodses  %}
+                        <tr>
+                            <td class="text-center"><img src="{{ url_for('static', filename='upload') }}/{{goods.photo}}" style="width: 30px;"></td>
+                            <td class="text-center">{{goods.name}}</td>
+                            <td class="text-center">{{goods.price}}</td>
+                            <td class="text-center">{{items[goods.iid]}}</td>
+                            <td class="text-left">{{goods.content | safe}}</td>
+                            <td class="text-left">
+                                <a class="btn btn-warning btn-sm" href="{{url_for('goods_back.goods_edit_page')}}?gid={{goods.gid}}"><span class="fa fa-edit"></span>&nbsp;编辑</a>
+                                <a class="btn btn-danger btn-sm" href="{{url_for('goods_back.goods_delete_handle')}}?gid={{goods.gid}}"><span class="fa fa-remove"></span>&nbsp;删除</a>
+                            </td>
+                        </tr>
+                        {%  endfor  %}
+                        </tbody>
+                    </table>
+                    {{pagebar.show_pagebar(current_page, all_recorders, "/back/admin/goods/list.action", keyword, 5)}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+
+    </div>
+</div>
+<div class="row">&nbsp;</div>
+{% endblock %}

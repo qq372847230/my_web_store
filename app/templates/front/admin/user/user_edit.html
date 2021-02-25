@@ -1,0 +1,91 @@
+{% import "macros/carousel.macro" as carousel %}
+{% import "macros/menu_item.macro" as item %}
+{% extends "yootk.parent.html" %}
+{% block head %}
+    {{super()}}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap-datetimepicker.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/front/user_edit.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='ckeditor/ckeditor.js') }}"></script>
+{% endblock %}
+{% block body %}
+<div class="row">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12" style="height: 100%;">
+        {{carousel.show_carousel()}}
+    </div>
+</div>
+<div style="height: 1px;">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><strong><span class="fa fa-user"></span>&nbsp;编辑用户信息</strong></div>
+            <div class="card-body text-left">
+                <div class="card-body">
+                    <form action="{{url_for('user_front.user_edit_handle')}}" method="post" id="userForm" enctype="multipart/form-data">
+                        <div class="form-group row" id="nameDiv">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>用户姓名：</strong></label>
+                            <div class="col-sm-6">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="请输入您的姓名..." value="{{user.name or ''}}">
+                            </div>
+                            <div class="col-sm-4"><span id="nameMsg"></span></div>
+                        </div>
+                        <div class="form-group row" id="genderDiv">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>用户性别：</strong></label>
+                            <div class="col-sm-6">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male-gender" value="男" {{user.gender | checked("男")}}>
+                                    <label class="form-check-label" for="male-gender">男</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="female-gender" value="女" {{user.gender |  checked("女")}}>
+                                    <label class="form-check-label" for="female-gender">女</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4"><span id="genderMsg"></span></div>
+                        </div>
+                        <div class="form-group row" id="birthdayDiv">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>用户生日：</strong></label>
+                            <div class="col-sm-6" id="datetimepicker">
+                                <input type="text" class="form-control" id="birthday" name="birthday" placeholder="请选择您的生日..." readonly value="{{user.birthday or ''}}"/>
+                            </div>
+                            <div class="col-sm-4"><span id="birthdayMsg"></span></div>
+                        </div>
+                        <div class="form-group row" id="fileDiv">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>用户头像：</strong></label>
+                            <div class="col-sm-6">
+                                <img src="{{ url_for('static', filename='upload/' + session.photo) }}" style="width:300px;">
+                                <input type="file" id="file" name="file" class="form-control" placeholder="请选择您的靓照...">
+                            </div>
+                            <div class="col-sm-4"><span id="fileMsg"></span></div>
+                        </div>
+                        <div class="form-group row" id="noteDiv">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>自我介绍：</strong></label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="note" name="note" placeholder="请输入一些自我美言..." cols="30" rows="5">{{user.note | default("")}}</textarea>
+                                <span id="noteMsg"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-md-center">
+                            <div class="col-md-2">&nbsp;</div>
+                            <div class="col-sm-6">
+                                <input type="hidden" id="csrf_token" name="csrf_token" value="{{ csrf_token() }}">
+                                <input type="hidden" id="photo" name="photo" value="{{ user.photo }}">
+                                <button type="submit" class="btn btn-sm btn-primary"><strong><span class="fa fa-edit"></span>&nbsp;修改</strong></button>
+                                <button type="reset" class="btn btn-sm btn-warning"><strong><span class="fa fa-eraser"></span>&nbsp;重置</strong></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">&nbsp;</div>
+{% endblock %}

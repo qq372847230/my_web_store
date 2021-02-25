@@ -1,0 +1,66 @@
+{% import "macros/carousel.macro" as carousel %}
+{% import "macros/menu_item.macro" as item %}
+{% extends "yootk.parent.html" %}
+{% block head %}
+    {{super()}}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/front/user_login.js') }}"></script>
+{% endblock %}
+{% block body %}
+<div class="row">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12" style="height: 100%;">
+        {{carousel.show_carousel()}}
+    </div>
+</div>
+<div style="height: 1px;">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><strong><span class="fa fa-user"></span>&nbsp;用户登录</strong></div>
+            <div class="card-body text-left">
+                <div class="card-body">
+                    <form action="{{url_for('user_sign.login_handle')}}" method="post" id="loginForm">
+                        <div class="form-group row" id="uidDiv">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>登录账户：</strong></label>
+                            <div class="col-sm-6">
+                                <input type="text" id="uid" name="uid" class="form-control" placeholder="请输入登录帐号...">
+                            </div>
+                            <div class="col-sm-4"><span id="uidMsg"></span></div>
+                        </div>
+                        <div class="form-group row" id="passwordDiv">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>登录密码：</strong></label>
+                            <div class="col-sm-6">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="请输入登录密码...">
+                            </div>
+                            <div class="col-sm-4"><span id="passwordMsg"></span></div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>验证码：</strong></label>
+                            <div class="col-sm-4">
+                                <input type="text" id="code" name="code" class="form-control" placeholder="请输入5位验证码..." size="5" maxlength="5">
+                            </div>
+                            <div class="col-sm-2"><img src="/vetify.code" id="codeImg" onclick="this.src='/vetify.code?'+ Math.random()"></div>
+                            <div class="col-sm-4"><span id="codeMsg"></span></div>
+                        </div>
+                        <div class="form-group row justify-content-md-center">
+                            <div class="col-md-2">
+                                <input type="checkbox" id="rememberme" name="rememberme" class="" value="True">&nbsp;下次免登录
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="hidden" id="csrf_token" name="csrf_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="btn btn-sm btn-primary"><strong><span class="fa fa-sign-in"></span>&nbsp;登录</strong></button>
+                                <button type="reset" class="btn btn-sm btn-warning"><strong><span class="fa fa-eraser"></span>&nbsp;重置</strong></button>
+                                <a href="/regist.page" class="btn btn-sm btn-info"><strong><span class="fa fa-child"></span>&nbsp;注册新用户</strong></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">&nbsp;</div>
+{% endblock %}

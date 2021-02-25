@@ -1,0 +1,48 @@
+{% import "macros/carousel.macro" as carousel %}
+{% import "macros/menu_item.macro" as item %}
+{% extends "yootk.parent.html" %}
+{% block head %}
+    {{super()}}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/common/forward.js') }}"></script>
+{% endblock %}
+{% block body %}
+<div class="row"><img src="{{ url_for('static', filename='images/ad_python.png') }}"></div>
+<div class="row">&nbsp;</div>
+<div class="row">
+    <script type="text/javascript">
+        window.onload = function() {
+            goForward() ;
+        }
+        function goForward() {
+            spanObject = document.getElementById("countSpan") ;
+            count = parseInt(spanObject.innerHTML) ;	// 取得当前计数的内容
+            count -- ;
+            if (count == 0) {	// 要进行跳转
+                window.location = "{{url}}" ;	// 跳转
+            } else {
+                spanObject.innerHTML = count ;
+                setTimeout(goForward,1000) ;
+            }
+        }
+    </script>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><strong><span class="fa fa-bullhorn"></span>&nbsp;操作信息提示</strong></div>
+            <div class="card-body text-left">
+                <h5 class="card-title"><span class="glyphicon glyphicon-envelope h2"></span>&nbsp;程序操作提示</h5>
+                <p class="card-text h3">{{message}}</p>
+                <div><span id="countSpan" class="text-danger">5</span>秒后跳转到其它页面，如果没有跳转请按
+                    <a href="{{url}}" class="btn btn-danger btn-sm img-fluid">这里</a>！</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div class="alert alert-success" id="alertDiv" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <span id="alertText"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}

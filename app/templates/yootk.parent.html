@@ -1,0 +1,36 @@
+{% import "macros/menu_navbar.macro" as navbar %}
+<html>
+<head>
+{% block head %}
+    <title>沐言优拓（www.yootk.com） —— Flask编程实战</title>
+    <meta charset="UTF-8">
+    <!-- 为了方便Ajax进行异步请求发送，所以此时可以将CSRF-Token设置在头信息，并通过JS进行获取及设置 -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/yootk-logo.ico') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery/jquery.metadata.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery/additional-methods.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery/Message_zh_CN.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/util/yootk.util.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/yootk.util.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='fontawesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}"/>
+{% endblock %}
+</head>
+<body>
+{{ navbar.show_menu() }}
+<div class="container">
+{% block body %}
+{% endblock %}
+    <div class="row text-center">
+        <div class="col-md-9">&nbsp;</div>
+        <div class="col-md-3">
+            <img src="" class="img-rounded">
+        </div>
+    </div>
+</div>
+</body>
+</html>

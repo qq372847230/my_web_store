@@ -1,0 +1,18 @@
+{% import "macros/carousel.macro" as carousel %}
+{% extends "yootk.parent.html" %}
+{% block head %}
+    {{super()}}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/common/error_page.js') }}"></script>
+{% endblock %}
+{% block body %}
+<div class="row">{{carousel.show_carousel()}}</div>
+<div class="row">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12">{{errors}}</div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <img src="{{ url_for('static', filename='images/code_500.png') }}">
+    </div>
+</div>
+{% endblock %}

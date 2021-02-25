@@ -1,0 +1,45 @@
+{% macro show_pagebar(current_page=1, all_recorders=1, url=None, keyword="", line_size=5) %}
+    {# 设置有一个种子数值，那么这个数值描述的就是一个可伸缩值 #}
+    {% set seed = 2 %}
+    {# 进行总页数的计算，而总页数的计算需要考虑一个余数问题 #}
+    {% set page_size = ((all_recorders + line_size - 1) / line_size) | int %}
+    <div id="pagebarDiv" style="float: right">
+        <ul class="pagination">
+            {# 考虑到分页的控制，需要追加有一个“上一页”的选项链接，这个链接描述的就是“当前页码 - 1”处理结果 #}
+            <li class="page-item {{current_page | disabled(1)}}"><a href="{{url}}?cp={{current_page-1}}&kw={{keyword}}&ls={{line_size}}" class="page-link">&lt;&lt;</a></li>
+            {# 不管任何时候一定要保证第1页的快捷链接存在 #}
+            <li class="page-item {{current_page | active(1)}}"><a href="{{url}}?cp=1&kw={{keyword}}&ls={{line_size}}" class="page-link">1</a></li>
+            {% if page_size < seed * 3 %}   {# 没有太多的页数 #}
+                {% for num in range(2, page_size)%}
+                    <li class="page-item {{num | active(current_page)}}"><a href="{{url}}?cp={{num}}&kw={{keyword}}&ls={{line_size}}" class="page-link">{{num}}</a></li>
+                {% endfor %}
+            {% else %}  {# 总页数已经超过了一个预期的阈值（seed * 3 = 4） #}
+                {% if current_page <= seed * 2 %} {# 当前页码还在前几页 #}
+                    {% for num in range(2, seed * 3)%}
+                        <li class="page-item {{num | active(current_page)}}"><a href="{{url}}?cp={{num}}&kw={{keyword}}&ls={{line_size}}" class="page-link">{{num}}</a></li>
+                    {% endfor %}
+                {% else %}
+                    <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+                    {# 可伸缩的页码值需要有几个前面的页码和后面的页码，那么这样就需要设置循环的范围 #}
+                    {% set start_page = current_page - seed %}
+                    {% set end_page = current_page + seed %}
+                    {% if end_page >= page_size %} {# 在最后几页 #}
+                        {% set end_page = page_size - 1%}
+                    {% endif %}
+                    {% for num in range(start_page, end_page + 1)%}
+                        <li class="page-item {{num | active(current_page)}}"><a href="{{url}}?cp={{num}}&kw={{keyword}}&ls={{line_size}}" class="page-link">{{num}}</a></li>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+            {% if (current_page + seed * 2 - 1) < page_size %}   {# 还有很多的页面 #}
+                <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+            {% endif %}
+            {% if page_size > 1%}
+                {# 不管任何时候一定要保证最后1页的快捷链接存在 #}
+                <li class="page-item {{current_page | active(page_size)}}"><a href="{{url}}?cp={{page_size}}&kw={{keyword}}&ls={{line_size}}" class="page-link">{{page_size}}</a></li>
+            {% endif %}
+            {# 考虑到分页的控制，需要追加有一个“下一页”的选项链接，这个链接描述的就是“当前页码 + 1”处理结果 #}
+            <li class="page-item {{current_page | disabled(page_size)}}"><a href="{{url}}?cp={{current_page+1}}&kw={{keyword}}&ls={{line_size}}" class="page-link">&gt;&gt;</a></li>
+        </ul>
+    </div>
+{% endmacro %}

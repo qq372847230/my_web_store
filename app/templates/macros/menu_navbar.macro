@@ -1,0 +1,55 @@
+{% macro show_menu() %}
+{# 所有页面的顶部菜单导航，这个菜单导航里面包含有图片、搜索框 #}
+<nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="https://www.yootk.com">
+
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link disabled" href="https://www.yootk.com" tabindex="-1" aria-disabled="true">
+                    <strong><img src="{{url_for('static',filename='images/python-logo.png')}}" style="width:23px;"/>&nbsp;Flask综合实战</strong></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/"><span class="fa fa-home"></span>&nbsp;首页<span class="sr-only">(current)</span></a>
+            </li>
+            {% if not session.uid %}    {# 现在没有当前给定的uid（session中存储的），则出现登录信息 #}
+            <li class="nav-item">
+                <a class="nav-link" href="/login.page"><strong><span class="fa fa-sign-in"></span>&nbsp;登录</strong></a>
+            </li>
+            {% endif %}
+            {% if session.uid %}    {# 现在存在有uid的session属性 #}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <strong><img src="{{ url_for('static', filename='upload/' + session.photo) }}" style="width:25px;" class="rounded-circle">&nbsp;{{session.uid}}</strong>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/front/admin/user/edit.page"><span class="fa fa-edit"></span>&nbsp;编辑信息</a>
+                    <a class="dropdown-item" href="/front/admin/user/edit_password.page"><span class="fa fa-user-secret"></span>&nbsp;修改密码</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout.action"><span class="fa fa-power-off"></span>&nbsp;登录注销</a>
+                </div>
+            </li>
+            {% endif %}
+            {% if session.admin == 1 %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <strong><span class="fa fa-server"></span>&nbsp;商品管理</strong>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/back/admin/goods/add.page"><span class="fa fa-file"></span>&nbsp;添加商品</a>
+                    <a class="dropdown-item" href="/back/admin/goods/list.action?cp=1"><span class="fa fa-list-ol"></span>&nbsp;商品列表</a>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="/search.index">
+            <input class="form-control mr-sm-2" type="search" id="kw" name="kw" placeholder="请输入商品关键字..." aria-label="Search" value="{{keyword}}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="fa fa-search"></span>&nbsp;搜索</button>
+        </form>
+    </div>
+</nav>
+{% endmacro %}

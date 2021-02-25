@@ -1,0 +1,81 @@
+{% import "macros/carousel.macro" as carousel %}
+{% import "macros/menu_item.macro" as item %}
+{% extends "yootk.parent.html" %}
+{% block head %}
+    {{super()}}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/back/admin/goods/goods_add.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='ckeditor/ckeditor.js') }}"></script>
+{% endblock %}
+{% block body %}
+<div class="row">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12" style="height: 100%;">
+        {{carousel.show_carousel()}}
+    </div>
+</div>
+<div style="height: 1px;">&nbsp;</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body text-left">
+                <h5 class="card-title"><strong><span class="fa fa-gift"></span>&nbsp;增加商品信息</strong></h5>
+                <form action="{{url_for('goods_back.goods_add_handle')}}" method="post" enctype="multipart/form-data" id="goodsForm">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>商品名称：</strong></label>
+                            <div class="col-sm-6">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="请输入商品名称...">
+                            </div>
+                            <div class="col-sm-4"><span id="nameMsg"></span></div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>商品价格：</strong></label>
+                            <div class="col-sm-6">
+                                <input type="text" id="price" name="price" class="form-control" placeholder="请输入商品价格...">
+                            </div>
+                            <div class="col-sm-4"><span id="priceMsg"></span></div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>商品分类：</strong></label>
+                            <div class="col-sm-6">
+                                <select id="iid" name="iid" class="form-control">
+                                    <option value="">========= 请选择商品所属分类 =========</option>
+                                    {%  for item in items %}
+                                    <option value="{{item.iid}}">{{item.title}}</option>
+                                    {%  endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-4"><span id="iidMsg"></span></div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>商品图片：</strong></label>
+                            <div class="col-sm-6">
+                                <input type="file" id="file" name="file" class="form-control" placeholder="请选择商品图片...">
+                            </div>
+                            <div class="col-sm-4"><span id="Msg"></span></div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label text-right">
+                                <strong>商品介绍：</strong></label>
+                            <div class="col-md-10">
+                                <textarea name="content" id="content"/></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-md-center">
+                            <div class="col-sm-6">
+                                <input type="hidden" id="csrf_token" name="csrf_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="btn btn-sm btn-primary"><strong><span class="fa fa-edit"></span>&nbsp;增加</strong></button>
+                                <button type="reset" class="btn btn-sm btn-warning">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">&nbsp;</div>
+{% endblock %}

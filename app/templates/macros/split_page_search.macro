@@ -1,0 +1,18 @@
+{% macro show_searchbar(action, keyword) %}
+    <div id="searchDiv">
+        <form action="{{url_for(action)}}" method="post" id="searchForm">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label text-right">
+                    <strong>请输入检索关键字：</strong>
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" id="kw" name="kw" class="form-control" placeholder="请输入检索关键字" value="{{keyword}}">
+                </div>
+                <div class="col-sm-2">
+                    <input type="hidden" id="csrf_token" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span>&nbsp;搜索</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endmacro %}
